@@ -12,13 +12,13 @@ MovieTimeApp is a cross-platform mobile application for browsing and discovering
 ## Screenshots
 
 ### Main Screen
-<img src="https://github.com/luiseduardohd/MovieApp/blob/master/Screenshots/Main.png?raw=true" width="30%">
+<img src="https://github.com/luiseduardohd/MovieApp/blob/main/Screenshots/Main.png?raw=true" width="30%">
 
 ### Movie Detail with Trailer
-<img src="https://github.com/luiseduardohd/MovieApp/blob/master/Screenshots/Movie-Detail-Trailer.png?raw=true" width="30%">
+<img src="https://github.com/luiseduardohd/MovieApp/blob/main/Screenshots/Movie-Detail-Trailer.png?raw=true" width="30%">
 
 ### Movie Detail Page
-<img src="https://github.com/luiseduardohd/MovieApp/blob/master/Screenshots/Movie-Detail.png?raw=true" width="30%">
+<img src="https://github.com/luiseduardohd/MovieApp/blob/main/Screenshots/Movie-Detail.png?raw=true" width="30%">
 
 ## Installation
 
