@@ -38,4 +38,9 @@ MovieTimeApp is a cross-platform mobile application for browsing and discovering
 - REST API Integration
 - C#
 
-## License
+
+## Licence
+All Rights reserved
+
+## Author
+Developed By Luis Eduardo HD
