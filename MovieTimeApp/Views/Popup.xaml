@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieTimeApp.Views.Popup">
+    <ContentPage.Content>
+        <ScrollView HorizontalOptions="Center" VerticalOptions="Center">
+            <AbsoluteLayout>
+                <Frame
+                    x:Name="FrameContainer"
+                    Margin="15"
+                    BackgroundColor="White"
+                    HorizontalOptions="Center">
+                    <StackLayout
+                        Padding="10,5"
+                        IsClippedToBounds="True"
+                        Spacing="3">
+                        <Image
+                            x:Name="OctocatImage"
+                            Margin="10"
+                            HeightRequest="150"
+                            HorizontalOptions="Center"
+                            WidthRequest="150">
+                            <Image.Source>
+                                <OnPlatform
+                                    x:TypeArguments="ImageSource"
+                                    Android="github_octocat.png"
+                                    WinPhone="Assets/github_octocat.png"
+                                    iOS="github_octocat.png" />
+                            </Image.Source>
+                        </Image>
+                        <Entry
+                            x:Name="UsernameEntry"
+                            HorizontalOptions="Center"
+                            Placeholder="Username"
+                            Style="{StaticResource EntryStyle}" />
+                        <Entry
+                            x:Name="PasswordEntry"
+                            HorizontalOptions="Center"
+                            IsPassword="True"
+                            Placeholder="Password"
+                            Style="{StaticResource EntryStyle}" />
+                        <Button
+                            x:Name="LoginButton"
+                            Margin="10,5"
+                            BackgroundColor="#7dbbe6"
+                            HorizontalOptions="Fill"
+                            Text="Login">
+                            <Button.HeightRequest>
+                                <OnPlatform
+                                    x:TypeArguments="x:Double"
+                                    Android="50"
+                                    WinPhone="30"
+                                    iOS="30" />
+                            </Button.HeightRequest>
+                        </Button>
+                    </StackLayout>
+                </Frame>
+                <ContentView AbsoluteLayout.LayoutBounds="1, 0, -1, -1" AbsoluteLayout.LayoutFlags="PositionProportional">
+
+                    <Image
+                        x:Name="CloseImage"
+                        HeightRequest="30"
+                        WidthRequest="30">
+                        <Image.Source>
+                            <OnPlatform
+                                x:TypeArguments="ImageSource"
+                                Android="close_circle_button.png"
+                                WinPhone="Assets/close_circle_button.png"
+                                iOS="close_circle_button.png" />
+                        </Image.Source>
+                    </Image>
+                </ContentView>
+            </AbsoluteLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

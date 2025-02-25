@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Refit" Version="6.3.2" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="NeoSmart.AsyncLock" Version="3.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MovieTimeApp.Entities\MovieTimeApp.Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="TheMovieDB\Test\" />
+    <None Remove="TheMovieDB\Data\" />
+    <None Remove="sqlite-net-pcl" />
+    <None Remove="NeoSmart.AsyncLock" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TheMovieDB\Test\" />
+    <Folder Include="TheMovieDB\Data\" />
+  </ItemGroup>
+</Project>

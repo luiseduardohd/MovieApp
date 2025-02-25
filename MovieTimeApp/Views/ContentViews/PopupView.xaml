@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="MovieTimeApp.Views.ContentViews.PopupView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:contentviews="clr-namespace:MovieTimeApp.Views.ContentViews"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:MovieTimeApp.Resources.Images"
+    xmlns:mynamespace="clr-namespace:MovieTimeApp"
+    xmlns:sharpnado="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+    x:DataType="contentviews:PopupView"
+    BackgroundColor="Transparent">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <mynamespace:VoteAverangeToFormattedTextStarsConverter x:Key="voteToStars" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+
+        <ScrollView Margin="10">
+            <AbsoluteLayout>
+                <Grid
+                    Margin="10"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All">
+
+                    <sharpnado:MaterialFrame
+                        CornerRadius="18"
+                        MaterialBlurStyle="Light"
+                        MaterialTheme="AcrylicBlur"
+                        />
+                    <StackLayout
+                        Margin="20"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                        <Frame HorizontalOptions="FillAndExpand"
+                            Padding="0"
+                            BackgroundColor="Transparent"
+                            CornerRadius="18"
+                            HasShadow="False"
+                            HeightRequest="480"
+                            IsClippedToBounds="True">
+                            <Image
+                                Aspect="AspectFill"
+                                Source="{Binding Movie.PosterPath, StringFormat='https://image.tmdb.org/t/p/w500{0}'}"
+                                VerticalOptions="FillAndExpand" />
+                        </Frame>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="28"
+                            Text="{Binding Movie.Title}"
+                            TextColor="#FFFFFF" />
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span
+                                        FontSize="16"
+                                        Text="Released: "
+                                        TextColor="#A5A5A5" />
+                                    <Span
+                                        FontSize="16"
+                                        Text="{Binding Movie.ReleaseDate, StringFormat='{0:MM/dd/yy}'}"
+                                        TextColor="#FFFFFF" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label
+                            x:Name="StarsLabel"
+                            FormattedText="{Binding Movie.VoteAverage, Converter={StaticResource voteToStars}}"
+                            HeightRequest="30" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            Text="{Binding Movie.VoteCount, StringFormat='{0:n0} ratings'}"
+                            TextColor="#7107CC" />
+                        <Label
+                            Margin="0,0,0,27"
+                            FontSize="Small"
+                            LineBreakMode="TailTruncation"
+                            MaxLines="3"
+                            Text="{Binding Movie.Overview}"
+                            TextColor="White" />
+
+
+                        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                            <Grid HorizontalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Frame
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Padding="0"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="#6715c4"
+                                    CornerRadius="10"
+                                    HasShadow="False"
+                                    HorizontalOptions="FillAndExpand">
+                                    <Label
+                                        Margin="8"
+                                        Padding="0"
+                                        FontSize="12"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="Back"
+                                        TextColor="White"
+                                        VerticalOptions="Center" />
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="CloseEventHandler" />
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                <Frame
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Padding="0"
+                                    BackgroundColor="#7107CC"
+                                    BorderColor="#6715c4"
+                                    CornerRadius="12"
+                                    HasShadow="False"
+                                    HorizontalOptions="FillAndExpand">
+                                    <Label
+                                        Margin="8"
+                                        Padding="0"
+                                        FontSize="14"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="View Trailer"
+                                        TextColor="White"
+                                        VerticalOptions="Center" />
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ViewTrailerHandler" />
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+
+                <ContentView AbsoluteLayout.LayoutBounds="1, 0, -1, -1" AbsoluteLayout.LayoutFlags="PositionProportional">
+                    <Grid
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="End"
+                        WidthRequest="30">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="CloseEventHandler" />
+                        </Grid.GestureRecognizers>
+                        <Ellipse
+                            Grid.Row="0"
+                            Fill="#6715c4"
+                            HeightRequest="30"
+                            HorizontalOptions="Start"
+                            WidthRequest="30" />
+                        <Image
+                            HorizontalOptions="CenterAndExpand"
+                            Source="{local:ImageResource MovieTimeApp.Resources.Images.cerrar32.png}"
+                            VerticalOptions="CenterAndExpand" />
+                    </Grid>
+                </ContentView>
+            </AbsoluteLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

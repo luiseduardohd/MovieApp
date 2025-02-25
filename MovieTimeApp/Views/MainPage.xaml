@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MovieTimeApp.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    Title="MOVIE TIME"
+    ios:Page.UseSafeArea="true"
+    BackgroundColor="Black">
+
+    <NavigationPage.TitleView>
+        <Label HorizontalTextAlignment="Center" VerticalTextAlignment="End">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span
+                        FontAttributes="Italic"
+                        FontFamily="RiftDemiItalicFont"
+                        FontSize="28"
+                        Text="MOVIE "
+                        TextColor="#9150EC" />
+                    <Span
+                        FontAttributes="Italic"
+                        FontFamily="RiftDemiItalicFont"
+                        FontSize="28"
+                        Text="TIME"
+                        TextColor="#6715C4" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </NavigationPage.TitleView>
+    <RefreshView
+        x:Name="MyRefreshView"
+        BackgroundColor="Gray"
+        Command="{Binding RefreshCommand}"
+        IsRefreshing="{Binding IsRefreshing}"
+        RefreshColor="Yellow">
+        <ScrollView>
+            <StackLayout Margin="0,10,0,0">
+                <Label
+                    Margin="18,0,0,0"
+                    FontFamily="Roboto-Medium"
+                    FontSize="Medium"
+                    Text="Now Playing"
+                    TextColor="White" />
+                <CollectionView
+                    x:Name="NowPlayingCollectionView"
+                    Margin="0,0,0,24"
+                    BackgroundColor="Transparent"
+                    HeightRequest="252"
+                    HorizontalOptions="Fill"
+                    ItemsLayout="HorizontalList"
+                    ItemsSource="{Binding NowPlayingMovies}"
+                    SelectionChanged="OnCollectionViewSelectionChanged"
+                    SelectionMode="Single"
+                    VerticalOptions="Fill"
+                    WidthRequest="170">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <Grid
+                                Padding="0,0,20,0"
+                                HeightRequest="252"
+                                WidthRequest="170">
+
+                                <Frame
+                                    Padding=".5"
+                                    BackgroundColor="#7107CC"
+                                    BorderColor="#7107CC"
+                                    CornerRadius="10">
+                                    <Frame
+                                        Margin="0,0,0,1"
+                                        Padding=".5"
+                                        BackgroundColor="Transparent"
+                                        BorderColor="#7107CC"
+                                        CornerRadius="10"
+                                        IsClippedToBounds="True">
+
+                                        <Image
+                                            Aspect="AspectFit"
+                                            HorizontalOptions="FillAndExpand"
+                                            Source="{Binding PosterPath, StringFormat='https://image.tmdb.org/t/p/w500{0}'}"
+                                            VerticalOptions="FillAndExpand">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding BindingContext.GoToMovieDetailCommand, Source={x:Reference Name=NowPlayingCollectionView}}" CommandParameter="{Binding}" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </Frame>
+                                </Frame>
+                            </Grid>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label
+                    Margin="18,0,0,0"
+                    FontFamily="Roboto-Medium"
+                    FontSize="Medium"
+                    Text="Popular"
+                    TextColor="White" />
+                <CollectionView
+                    x:Name="PopularCollectionView"
+                    Margin="0,0,0,24"
+                    BackgroundColor="Transparent"
+                    HeightRequest="252"
+                    HorizontalOptions="Fill"
+                    ItemsLayout="HorizontalList"
+                    ItemsSource="{Binding PopularMovies}"
+                    SelectionChanged="OnCollectionViewSelectionChanged"
+                    SelectionMode="Single"
+                    VerticalOptions="Fill"
+                    WidthRequest="170">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <Grid
+                                Padding="0,0,20,0"
+                                HeightRequest="252"
+                                WidthRequest="170">
+
+                                <Frame
+                                    Padding=".5"
+                                    BackgroundColor="#7107CC"
+                                    BorderColor="#7107CC"
+                                    CornerRadius="10">
+                                    <Frame
+                                        Margin="0,0,0,1"
+                                        Padding=".5"
+                                        BackgroundColor="Transparent"
+                                        BorderColor="#7107CC"
+                                        CornerRadius="10"
+                                        IsClippedToBounds="True">
+
+                                        <Image
+                                            Aspect="AspectFit"
+                                            HorizontalOptions="FillAndExpand"
+                                            Source="{Binding PosterPath, StringFormat='https://image.tmdb.org/t/p/w500{0}'}"
+                                            VerticalOptions="FillAndExpand">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding BindingContext.GoToMovieDetailCommand, Source={x:Reference Name=PopularCollectionView}}" CommandParameter="{Binding}" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </Frame>
+                                </Frame>
+                            </Grid>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label
+                    Margin="18,0,0,0"
+                    FontFamily="Roboto-Medium"
+                    FontSize="Medium"
+                    Text="Top Rated"
+                    TextColor="White" />
+                <CollectionView
+                    x:Name="TopRatedCollectionView"
+                    Margin="0,0,0,24"
+                    BackgroundColor="Transparent"
+                    HeightRequest="252"
+                    HorizontalOptions="Fill"
+                    ItemsLayout="HorizontalList"
+                    ItemsSource="{Binding TopRatedMovies}"
+                    SelectionChanged="OnCollectionViewSelectionChanged"
+                    SelectionMode="Single"
+                    VerticalOptions="Fill"
+                    WidthRequest="170">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
+                                Padding="0,0,20,0"
+                                HeightRequest="252"
+                                WidthRequest="170">
+
+
+                                <Frame
+                                    Padding=".5"
+                                    BackgroundColor="#7107CC"
+                                    BorderColor="#7107CC"
+                                    CornerRadius="10">
+                                    <Frame
+                                        Margin="0,0,0,1"
+                                        Padding=".5"
+                                        BackgroundColor="Transparent"
+                                        BorderColor="#7107CC"
+                                        CornerRadius="10"
+                                        IsClippedToBounds="True">
+
+                                        <Image
+                                            Aspect="AspectFit"
+                                            HorizontalOptions="FillAndExpand"
+                                            Source="{Binding PosterPath, StringFormat='https://image.tmdb.org/t/p/w500{0}'}"
+                                            VerticalOptions="FillAndExpand">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding BindingContext.GoToMovieDetailCommand, Source={x:Reference Name=TopRatedCollectionView}}" CommandParameter="{Binding}" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </Frame>
+                                </Frame>
+                            </Grid>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Label
+                    Margin="18,0,0,0"
+                    FontFamily="Roboto-Medium"
+                    FontSize="Medium"
+                    Text="Upcoming"
+                    TextColor="White" />
+                <CollectionView
+                    x:Name="UpcomingCollectionView"
+                    BackgroundColor="Transparent"
+                    HeightRequest="252"
+                    HorizontalOptions="Fill"
+                    ItemsLayout="HorizontalList"
+                    ItemsSource="{Binding UpcomingMovies}"
+                    SelectionChanged="OnCollectionViewSelectionChanged"
+                    SelectionMode="Single"
+                    VerticalOptions="Fill"
+                    WidthRequest="170">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
+                                Padding="0,0,20,0"
+                                HeightRequest="252"
+                                WidthRequest="170">
+
+
+                                <Frame
+                                    Padding=".5"
+                                    BackgroundColor="#7107CC"
+                                    BorderColor="#7107CC"
+                                    CornerRadius="10">
+                                    <Frame
+                                        Margin="0,0,0,1"
+                                        Padding=".5"
+                                        BackgroundColor="Transparent"
+                                        BorderColor="#7107CC"
+                                        CornerRadius="10"
+                                        IsClippedToBounds="True">
+
+                                        <Image
+                                            Aspect="AspectFit"
+                                            HorizontalOptions="FillAndExpand"
+                                            Source="{Binding PosterPath, StringFormat='https://image.tmdb.org/t/p/w500{0}'}"
+                                            VerticalOptions="FillAndExpand">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding BindingContext.GoToMovieDetailCommand, Source={x:Reference Name=UpcomingCollectionView}}" CommandParameter="{Binding}" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </Frame>
+                                </Frame>
+                            </Grid>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+        </ScrollView>
+
+    </RefreshView>
+
+</ContentPage>

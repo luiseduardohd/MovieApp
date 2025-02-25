@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <GenerateProgramFile>false</GenerateProgramFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="C:\Users\edgar\.nuget\packages\dryioc\5.1.0\contentFiles\cs\netstandard2.0\DryIoc\Container.cs" />
+    <Compile Remove="C:\Users\edgar\.nuget\packages\dryioc\5.1.0\contentFiles\cs\netstandard2.0\DryIoc\Expression.cs" />
+    <Compile Remove="C:\Users\edgar\.nuget\packages\dryioc\5.1.0\contentFiles\cs\netstandard2.0\DryIoc\FastExpressionCompiler.cs" />
+    <Compile Remove="C:\Users\edgar\.nuget\packages\dryioc\5.1.0\contentFiles\cs\netstandard2.0\DryIoc\ImTools.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta1" />
+    <PackageReference Include="coverlet.collector" Version="3.0.2" />
+    <PackageReference Include="Refit" Version="6.3.2" />
+    <PackageReference Include="Refit.Newtonsoft.Json" Version="6.3.2" />
+    <PackageReference Include="Unity" Version="5.11.10" />
+    <PackageReference Include="NUnitLite" Version="3.13.3" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MovieTimeApp.Entities\MovieTimeApp.Entities.csproj" />
+    <ProjectReference Include="..\MovieTimeApp.Services\MovieTimeApp.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="NUnit.ConsoleRunner" />
+    <None Remove="NUnitLite" />
+    <None Remove="NUnit" />
+  </ItemGroup>
+</Project>
